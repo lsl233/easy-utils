@@ -1,1 +1,3 @@
-export default 'hello world'
+export * from './function'
+export * from './object'
+export * from './array'
