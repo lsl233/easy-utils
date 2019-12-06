@@ -1,6 +1,6 @@
 import isFunction from './isFunction'
 /**
- * 结束
+ * return 之前执行
  *
  * @param func
  * @param afterFunc

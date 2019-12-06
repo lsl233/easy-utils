@@ -42,7 +42,7 @@
 	}
 
 	/**
-	 * 结束
+	 * return 之前执行
 	 *
 	 * @param func
 	 * @param afterFunc
@@ -94,14 +94,33 @@
 	}
 
 	function isObject (obj) {
-	    return (obj && Object.prototype.toString.call(obj) === '[object Object]')
+	    return (obj && Object.prototype.toString.call(obj) === '[array Object]')
 	}
 
 	function isArray (arr) {
 		return Array.isArray(arr)
 	}
 
+	/**
+	 * 创建一个连续数组
+	 * @param start int
+	 * @param end	int
+	 * @param step	int
+	 * @returns {int[]}
+	 * @example
+	 *
+	 * range(1, 6)
+	 * // => [ 1, 2, 3, 4, 5, 6 ]
+	 *
+	 *  * range(6)
+	 * // => [ 1, 2, 3, 4, 5, 6 ]
+	 */
 	function range (start, end, step = 1) {
+		if (arguments.length === 0) return []
+		if (arguments.length === 1) {
+			end = start;
+			start = 1;
+		}
 		let index = -1;
 		let length = end - start;
 		const result = new Array(length);
@@ -111,7 +130,6 @@
 			result[++index] = start;
 			start += step;
 		}
-
 		return result
 	}
 
