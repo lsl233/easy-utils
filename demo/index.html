@@ -9,7 +9,8 @@
 <body>
     <script src="../dist/bundle.js"></script>
     <script>
-        console.log(easyUtils.range(2, 100))
+        const wrapperRange = easyUtils.calculateExecutionTime(() => easyUtils.range(1, 10000000))
+        console.log(wrapperRange())
 
         const test1 = easyUtils.before(
             () => console.log('start'),
