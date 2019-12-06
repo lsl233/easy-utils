@@ -1,3 +1,3 @@
 export * from './function/index'
-export * from './object'
-export * from './array'
+export * from './object/index'
+export * from './array/index'

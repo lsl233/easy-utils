@@ -94,25 +94,40 @@
 	}
 
 	function isObject (obj) {
-	    return (Object.prototype.toString.call(obj) === '[object Object]')
+	    return (obj && Object.prototype.toString.call(obj) === '[object Object]')
 	}
 
 	function isArray (arr) {
-	    return Array.isArray(arr)
+		return Array.isArray(arr)
 	}
 
 	function range (start, end, step = 1) {
-	    let index = -1;
-	    let length = end - start;
-	    const result = new Array(length);
-	    length += 1;
+		let index = -1;
+		let length = end - start;
+		const result = new Array(length);
+		length += 1;
 
-	    while(length--) {
-	        result[++index] = start;
-	        start += step;
-	    }
+		while(length--) {
+			result[++index] = start;
+			start += step;
+		}
 
-	    return result
+		return result
+	}
+
+	function getValue(obj, path, defaultValue) {
+		if (!isObject(obj) || !isArray) return defaultValue
+		const keys = path.split('.');
+		for (let i = 0, l = keys.length; i < l; i++) {
+			const key = keys[i];
+			const item = obj[key];
+			if (item) {
+				obj = obj[key];
+			} else {
+				return defaultValue
+			}
+		}
+		return obj
 	}
 
 	exports.after = after;
@@ -122,6 +137,7 @@
 	exports.beforeAndAfterManual = beforeAndAfterManual;
 	exports.beforeManual = beforeManual;
 	exports.calculateExecutionTime = calculateExecutionTime;
+	exports.getValue = getValue;
 	exports.isArray = isArray;
 	exports.isFunction = isFunction;
 	exports.isObject = isObject;

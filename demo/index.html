@@ -27,26 +27,30 @@
             submitData
         )
 
-        wrapperSubmitData()
-        const wrapperRange = easyUtils.calculateExecutionTime(() => easyUtils.range(1, 100000))
-        console.log(wrapperRange())
-
-        const test1 = easyUtils.before(
-            () => console.log('start'),
-            () => console.log('excued')
+		const obj = {
+        	a: {
+        		b: {
+        			c: {
+        				d: {
+        					e: 9,
+                            a: [
+                                [
+                                    [
+                                        1
+                                    ]
+                                ]
+                            ]
+						}
+					}
+				}
+			}
+		}
+        const wrapperGetValue = easyUtils.calculateExecutionTime(
+            easyUtils.getValue
         )
 
-        const test2 = easyUtils.beforeManual(
-            (done) => {
-                console.log('start')
-                setTimeout(() => {
-                   done(true)
-                }, 3000)
-            },
-            (...arg) => console.log('excued', arg)
-        )
+		console.log('getValue',  wrapperGetValue(obj, 'a.b.c.d.a.0.0.0', ''))
 
-        test2()
     </script>
 </body>
 </html>
