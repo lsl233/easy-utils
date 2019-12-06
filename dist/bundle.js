@@ -32,14 +32,12 @@
 	 * @param func
 	 * @returns {Function|void}
 	 */
-	function beforeAsync (beforeFunc, func) {
+	function beforeManual (beforeFunc, func) {
 		if (!isFunction(beforeFunc)) return console.error('Expected a function')
 		if (!isFunction(func)) return console.error('Expected a function')
 
 		return function (...arg) {
-			beforeFunc((...values) => {
-				func.apply(this, arg.concat(values));
-			});
+			beforeFunc(() => func.apply(this, arg));
 		}
 	}
 
@@ -67,7 +65,7 @@
 	 * @param func
 	 * @returns {Function|void}
 	 */
-	function afterAsync (func, afterFunc) {
+	function afterManual (func, afterFunc) {
 		if (!isFunction(func)) return console.error('Expected a function')
 		if (!isFunction(afterFunc)) return console.error('Expected a function')
 
@@ -81,9 +79,9 @@
 		return after(before(beforeFunc, func), afterFunc)
 	}
 
-	function beforeAndAfterAsync (beforeFunc, func, afterFunc) {
+	function beforeAndAfterManual (beforeFunc, func, afterFunc) {
 		return function () {
-			return afterAsync(beforeAsync(beforeFunc, func), afterFunc)
+			return afterManual(beforeManual(beforeFunc, func), afterFunc)
 		}
 	}
 
@@ -118,11 +116,11 @@
 	}
 
 	exports.after = after;
-	exports.afterAsync = afterAsync;
+	exports.afterManual = afterManual;
 	exports.before = before;
 	exports.beforeAndAfter = beforeAndAfter;
-	exports.beforeAndAfterAsync = beforeAndAfterAsync;
-	exports.beforeAsync = beforeAsync;
+	exports.beforeAndAfterManual = beforeAndAfterManual;
+	exports.beforeManual = beforeManual;
 	exports.calculateExecutionTime = calculateExecutionTime;
 	exports.isArray = isArray;
 	exports.isFunction = isFunction;

@@ -1,21 +1,21 @@
 import isFunction from './isFunction'
 import before from './before'
-import beforeAsync from './beforeAsync'
+import beforeManual from './beforeManual'
 import after from './after'
-import afterAsync from './afterAsync'
+import afterManual from './afterManual'
 import beforeAndAfter from './beforeAndAfter'
-import beforeAndAfterAsync from './beforeAndAfterAsync'
+import beforeAndAfterManual from './beforeAndAfterManual'
 
 import calculateExecutionTime from './calculateExecutionTime'
 
 export {
 	isFunction,
 	before,
-	beforeAsync,
+	beforeManual,
 	after,
-	afterAsync,
+	afterManual,
 	beforeAndAfter,
-	beforeAndAfterAsync,
+	beforeAndAfterManual,
 	calculateExecutionTime
 }
 

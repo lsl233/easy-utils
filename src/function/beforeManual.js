@@ -7,13 +7,11 @@ import isFunction from './isFunction'
  * @param func
  * @returns {Function|void}
  */
-export default function beforeAsync (beforeFunc, func) {
+export default function beforeManual (beforeFunc, func) {
 	if (!isFunction(beforeFunc)) return console.error('Expected a function')
 	if (!isFunction(func)) return console.error('Expected a function')
 
 	return function (...arg) {
-		beforeFunc((...values) => {
-			func.apply(this, arg.concat(values))
-		})
+		beforeFunc(() => func.apply(this, arg))
 	}
 }

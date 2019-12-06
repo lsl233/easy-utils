@@ -5,7 +5,7 @@ import isFunction from './isFunction'
  * @param func
  * @returns {Function|void}
  */
-export default function afterAsync (func, afterFunc) {
+export default function afterManual (func, afterFunc) {
 	if (!isFunction(func)) return console.error('Expected a function')
 	if (!isFunction(afterFunc)) return console.error('Expected a function')
 
