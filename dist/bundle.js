@@ -93,12 +93,39 @@
 		)
 	}
 
-	function isObject (obj) {
-	    return (obj && Object.prototype.toString.call(obj) === '[array Object]')
+	function getType(value) {
+		return Object.prototype.toString.call(value)
+	}
+
+	function isObjectData (value) {
+	    return getType(value) === '[object Object]'
 	}
 
 	function isArray (arr) {
 		return Array.isArray(arr)
+	}
+
+	function getValue(obj, path, defaultValue) {
+		if (!isObjectData(obj) || !isArray) return defaultValue
+		const keys = path.split('.');
+		for (let i = 0, l = keys.length; i < l; i++) {
+			const key = keys[i];
+			const item = obj[key];
+			if (item) {
+				obj = obj[key];
+			} else {
+				return defaultValue
+			}
+		}
+		return obj
+	}
+
+	function isObjectLike(value) {
+		return typeof value === 'object' && value !== null
+	}
+
+	function isNumber (value) {
+		return typeof value === 'number' || getType(value) === '[object Number]'
 	}
 
 	/**
@@ -121,6 +148,11 @@
 			end = start;
 			start = 1;
 		}
+
+		if (!isNumber(start)) throw new Error('`start` need Number')
+		if (!isNumber(end)) throw new Error('`end` need Number')
+		if (!isNumber(step)) throw new Error('`step` need Number')
+
 		let index = -1;
 		let length = end - start;
 		const result = new Array(length);
@@ -131,33 +163,6 @@
 			start += step;
 		}
 		return result
-	}
-
-	function getValue(obj, path, defaultValue) {
-		if (!isObject(obj) || !isArray) return defaultValue
-		const keys = path.split('.');
-		for (let i = 0, l = keys.length; i < l; i++) {
-			const key = keys[i];
-			const item = obj[key];
-			if (item) {
-				obj = obj[key];
-			} else {
-				return defaultValue
-			}
-		}
-		return obj
-	}
-
-	function isObjectLike(value) {
-		return typeof value === 'object' && value !== null
-	}
-
-	function getType(value) {
-		return Object.prototype.toString.call(value)
-	}
-
-	function isNumber (value) {
-		return typeof value === 'number' || getType(value) === '[object Number]'
 	}
 
 	exports.after = after;
@@ -172,7 +177,7 @@
 	exports.isArray = isArray;
 	exports.isFunction = isFunction;
 	exports.isNumber = isNumber;
-	exports.isObject = isObject;
+	exports.isObject = isObjectData;
 	exports.isObjectLike = isObjectLike;
 	exports.range = range;
 

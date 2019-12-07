@@ -1,3 +1,5 @@
+import { isNumber } from '../number/index'
+
 /**
  * 创建一个连续数组
  * @param start int
@@ -18,6 +20,11 @@ export default function range (start, end, step = 1) {
 		end = start
 		start = 1
 	}
+
+	if (!isNumber(start)) throw new Error('`start` need Number')
+	if (!isNumber(end)) throw new Error('`end` need Number')
+	if (!isNumber(step)) throw new Error('`step` need Number')
+
 	let index = -1
 	let length = end - start
 	const result = new Array(length)

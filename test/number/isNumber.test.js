@@ -36,6 +36,4 @@ describe('is number', () => {
 	test('isNumber(undefined)', () => {
 		expect(isNumber(undefined)).toBeFalsy()
 	})
-
-
 })
