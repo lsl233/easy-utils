@@ -120,10 +120,6 @@
 		return obj
 	}
 
-	function isObjectLike(value) {
-		return typeof value === 'object' && value !== null
-	}
-
 	function isNumber (value) {
 		return typeof value === 'number' || getType(value) === '[object Number]'
 	}
@@ -177,8 +173,7 @@
 	exports.isArray = isArray;
 	exports.isFunction = isFunction;
 	exports.isNumber = isNumber;
-	exports.isObject = isObjectData;
-	exports.isObjectLike = isObjectLike;
+	exports.isObjectData = isObjectData;
 	exports.range = range;
 
 	Object.defineProperty(exports, '__esModule', { value: true });

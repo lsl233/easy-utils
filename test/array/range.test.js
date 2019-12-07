@@ -1,4 +1,4 @@
-const { range } = require('../../dist/bundle')
+import { range } from '../../src/array'
 
 describe('range', () => {
 	test('range(1, 6)', () => {

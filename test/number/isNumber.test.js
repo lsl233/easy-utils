@@ -1,4 +1,4 @@
-const { isNumber } = require('../../dist/bundle')
+import { isNumber } from '../../src/number'
 
 describe('is number', () => {
 	test('isNumber(1)', () => {

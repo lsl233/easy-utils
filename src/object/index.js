@@ -1,11 +1,9 @@
-import isObject from './isObjectData'
+import isObjectData from './isObjectData'
 import getValue from './getValue'
-import isObjectLike from './isObjectLike'
 import getType from './getType'
 
 export {
-	isObject,
+	isObjectData,
 	getValue,
-	isObjectLike,
 	getType
 }

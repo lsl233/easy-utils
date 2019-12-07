@@ -1,4 +1,4 @@
-const { getType } = require('../../dist/bundle')
+import { getType } from '../../src/object'
 
 describe('is type', () => {
 	test('isType(1)', () => {
