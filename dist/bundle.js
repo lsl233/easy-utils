@@ -148,6 +148,18 @@
 		return obj
 	}
 
+	function isObjectLike(value) {
+		return typeof value === 'object' && value !== null
+	}
+
+	function getType(value) {
+		return Object.prototype.toString.call(value)
+	}
+
+	function isNumber (value) {
+		return typeof value === 'number' || getType(value) === '[object Number]'
+	}
+
 	exports.after = after;
 	exports.afterManual = afterManual;
 	exports.before = before;
@@ -155,10 +167,13 @@
 	exports.beforeAndAfterManual = beforeAndAfterManual;
 	exports.beforeManual = beforeManual;
 	exports.calculateExecutionTime = calculateExecutionTime;
+	exports.getType = getType;
 	exports.getValue = getValue;
 	exports.isArray = isArray;
 	exports.isFunction = isFunction;
+	exports.isNumber = isNumber;
 	exports.isObject = isObject;
+	exports.isObjectLike = isObjectLike;
 	exports.range = range;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
