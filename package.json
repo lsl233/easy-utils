@@ -13,7 +13,8 @@
   "devDependencies": {},
   "scripts": {
     "build": "rollup -c -w",
-    "test": "jest"
+    "test": "jest",
+    "doc": "jsdoc -c doc.config.json -r"
   },
   "jest": {
     "collectCoverage": true,
