@@ -13,11 +13,6 @@ export default function before (beforeFunc, func) {
 
 	return function (...arg) {
 		beforeFunc()
-		if (isArrowFunction(func)) {
-			return func(...arg)
-		} else {
-			return func.apply(this, arg)
-		}
-
+		return func.apply(this, arg)
 	}
 }

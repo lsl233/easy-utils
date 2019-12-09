@@ -1,4 +1,4 @@
-import { isArray } from '../array'
+import isArray from '../array/isArray'
 
 export default function castPath (path) {
 	if (isArray(path)) return path

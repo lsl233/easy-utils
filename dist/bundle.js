@@ -8,6 +8,11 @@
 		return (typeof func === 'function')
 	}
 
+	function isArrowFunction (value) {
+		console.log(value, value.prototype);
+		return isFunction(value) && !value.prototype
+	}
+
 	/**
 	 *  开始
 	 *
@@ -16,8 +21,8 @@
 	 * @returns {Function|void}
 	 */
 	function before (beforeFunc, func) {
-		if (!isFunction(beforeFunc)) return console.error('Expected a function')
-		if (!isFunction(func)) return console.error('Expected a function')
+		if (!isFunction(beforeFunc)) throw new Error('beforeFunc expected a function')
+		if (!isFunction(func)) throw new Error('func Expected a function')
 
 		return function (...arg) {
 			beforeFunc();
@@ -105,19 +110,31 @@
 		return Array.isArray(arr)
 	}
 
+	function castPath (path) {
+		if (isArray(path)) return path
+		return path.split('.')
+	}
+
 	function getValue(obj, path, defaultValue) {
-		if (!isObjectData(obj) || !isArray) return defaultValue
-		const keys = path.split('.');
-		for (let i = 0, l = keys.length; i < l; i++) {
-			const key = keys[i];
-			const item = obj[key];
-			if (item) {
-				obj = obj[key];
-			} else {
-				return defaultValue
+		if (isObjectData(obj) || isArray(obj)) {
+			const keys = castPath(path);
+			for (let i = 0, l = keys.length; i < l; i++) {
+				const key = keys[i];
+				const item = obj[key];
+				if (item) {
+					obj = obj[key];
+				} else {
+					return defaultValue
+				}
 			}
+			return obj
 		}
-		return obj
+		return defaultValue
+
+	}
+
+	function isEmptyObject (value) {
+		return isObjectData(value) && JSON.stringify(value) === '{}'
 	}
 
 	function isNumber (value) {
@@ -168,9 +185,12 @@
 	exports.beforeAndAfterManual = beforeAndAfterManual;
 	exports.beforeManual = beforeManual;
 	exports.calculateExecutionTime = calculateExecutionTime;
+	exports.castPath = castPath;
 	exports.getType = getType;
 	exports.getValue = getValue;
 	exports.isArray = isArray;
+	exports.isArrowFunction = isArrowFunction;
+	exports.isEmptyObject = isEmptyObject;
 	exports.isFunction = isFunction;
 	exports.isNumber = isNumber;
 	exports.isObjectData = isObjectData;
