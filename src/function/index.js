@@ -1,4 +1,5 @@
 import isFunction from './isFunction'
+import isArrowFunction from './isArrowFunction'
 import before from './before'
 import beforeManual from './beforeManual'
 import after from './after'
@@ -10,6 +11,7 @@ import calculateExecutionTime from './calculateExecutionTime'
 
 export {
 	isFunction,
+	isArrowFunction,
 	before,
 	beforeManual,
 	after,
