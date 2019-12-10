@@ -8,11 +8,6 @@
 		return (typeof func === 'function')
 	}
 
-	function isArrowFunction (value) {
-		console.log(value, value.prototype);
-		return isFunction(value) && !value.prototype
-	}
-
 	/**
 	 *  开始
 	 *
@@ -106,8 +101,13 @@
 	    return getType(value) === '[object Object]'
 	}
 
-	function isArray (arr) {
-		return Array.isArray(arr)
+	/**
+	 * @name isArray
+	 * @param {*} value 验证对象
+	 * @returns {Boolean} 是否数组
+	 */
+	function isArray (value) {
+		return Array.isArray(value)
 	}
 
 	function castPath (path) {
@@ -189,7 +189,6 @@
 	exports.getType = getType;
 	exports.getValue = getValue;
 	exports.isArray = isArray;
-	exports.isArrowFunction = isArrowFunction;
 	exports.isEmptyObject = isEmptyObject;
 	exports.isFunction = isFunction;
 	exports.isNumber = isNumber;

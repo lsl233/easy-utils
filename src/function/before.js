@@ -1,5 +1,4 @@
 import isFunction from './isFunction'
-import isArrowFunction from './isArrowFunction'
 /**
  *  开始
  *

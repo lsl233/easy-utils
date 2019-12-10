@@ -8,7 +8,7 @@
   },
   "source": {
     "include": [
-      "dist"
+      "./src/"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
