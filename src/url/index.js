@@ -1,5 +1,7 @@
-import appendUrlQuery from './appendUrlQuery'
+import appendQueryToURL from './appendQueryToURL'
+import convertURLQueryToObject from './convertURLQueryToObject'
 
 export {
-	appendUrlQuery
+	appendQueryToURL,
+	convertURLQueryToObject
 }

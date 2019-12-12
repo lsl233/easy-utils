@@ -6,7 +6,7 @@ import isObjectData from '../object/isObjectData'
  * @param query {object} 扩展参数
  * @returns {string} 扩展后的URL
  */
-export default function appendUrlQuery (url, query) {
+export default function appendQueryToURL (url, query) {
 	if (isObjectData(query)) {
 		const hasQuery = url.indexOf('?') > -1
 		let index = 0
