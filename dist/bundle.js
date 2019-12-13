@@ -184,6 +184,16 @@
 		return result
 	}
 
+	function max (value) {
+		const defaultValue = 0;
+		if (!isArray(value)) {
+			console.warn('value Expected Array');
+			return defaultValue
+		}
+		if (value.length === 0) return defaultValue
+		return Math.max.apply(this, value)
+	}
+
 	function isNil(value) {
 		return value === null || value === undefined // or value == null
 	}
@@ -262,6 +272,7 @@
 	exports.isNil = isNil;
 	exports.isNumber = isNumber;
 	exports.isObjectData = isObjectData;
+	exports.max = max;
 	exports.range = range;
 
 	Object.defineProperty(exports, '__esModule', { value: true });
