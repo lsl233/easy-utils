@@ -8,14 +8,11 @@
   },
   "source": {
     "include": [
-      "./src/"
+      "src"
     ],
     "includePattern": ".+\\.js(doc)?$",
     "excludePattern": "(^|\\/|\\\\)_"
   },
-  "plugins": [
-    "plugins/markdown"
-  ],
   "templates": {
     "cleverLinks": false,
     "monospaceLinks": false
@@ -24,6 +21,7 @@
     "encoding": "utf8",
     "destination": "./out/",
     "recurse": true,
-    "readme": "./README.MD"
+    "readme": "./README.MD",
+    "template": "node_modules/minami"
   }
 }

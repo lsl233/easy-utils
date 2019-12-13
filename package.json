@@ -9,7 +9,10 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^24.9.0",
     "babel-preset-env": "^1.7.0",
+    "better-docs": "^1.4.7",
     "jest": "^23.6.0",
+    "jsdoc-to-markdown": "^5.0.3",
+    "minami": "^1.2.3",
     "regenerator-runtime": "^0.13.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-node-resolve": "^5.2.0"
@@ -18,7 +21,7 @@
   "scripts": {
     "build": "rollup -c -w",
     "test": "jest",
-    "doc": "jsdoc -c doc.config.json -r"
+    "doc": "jsdoc -c doc.config.json --debug"
   },
   "jest": {
     "collectCoverage": true,

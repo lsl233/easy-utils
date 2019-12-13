@@ -102,8 +102,9 @@
 	}
 
 	/**
-	 * @name isArray
-	 * @param {*} value 验证对象
+	 * 是否是数组
+	 * @method
+	 * @param {String} value 验证对象
 	 * @returns {Boolean} 是否数组
 	 */
 	function isArray (value) {
@@ -137,6 +138,11 @@
 		return isObjectData(value) && JSON.stringify(value) === '{}'
 	}
 
+	/**
+	 * @name isNumber
+	 * @param {*} value 任意参数
+	 * @returns {boolean}
+	 */
 	function isNumber (value) {
 		return typeof value === 'number' || getType(value) === '[object Number]'
 	}
@@ -178,18 +184,21 @@
 		return result
 	}
 
+	function isNil(value) {
+		return value === null || value === undefined // or value == null
+	}
+
 	/**
 	 * 增加URL参数
 	 * @param url {string} URL地址（没有验证URL合法性）
 	 * @param query {object} 扩展参数
 	 * @returns {string} 扩展后的URL
 	 */
-	function appendURLQuery (url, query) {
+	function appendQueryToURL (url, query) {
 		if (isObjectData(query)) {
 			const hasQuery = url.indexOf('?') > -1;
 			let index = 0;
 			for (const key in query) {
-				if (!query.hasOwnProperty(key)) continue
 				const value = query[key];
 				if (hasQuery) {
 					url += `&${key}=${value}`;
@@ -202,17 +211,26 @@
 		return url
 	}
 
+	function isString(value) {
+		return typeof value === 'string' || getType(value) === '[object String]'
+	}
+
 	const typeTuple = [Number, String, Boolean];
 
 	/**
-	 * URL 查询参数转换为Object
-	 * @param url {String} url地址（没有严格验证url）
-	 * @param types {Object} 类型转换
-	 * @return Object 参数对象
+	 * URL Query 2 Object
+	 * @method
+	 * @param {String} url url地址（没有严格验证url）
+	 * @param {Object} types 类型转换
+	 * @return {Object} 参数对象
 	 */
 	function convertURLQueryToObject (url, types) {
-		const queryString = url.split('?')[1];
 		const obj = {};
+		if (!isString(url)) {
+			return obj
+		}
+		const queryString = url.split('?')[1];
+
 		if (!queryString) return obj
 		const keyValueStrings = queryString.split('&');
 		for (const item of keyValueStrings) {
@@ -228,7 +246,7 @@
 
 	exports.after = after;
 	exports.afterManual = afterManual;
-	exports.appendQueryToURL = appendURLQuery;
+	exports.appendQueryToURL = appendQueryToURL;
 	exports.before = before;
 	exports.beforeAndAfter = beforeAndAfter;
 	exports.beforeAndAfterManual = beforeAndAfterManual;
@@ -241,6 +259,7 @@
 	exports.isArray = isArray;
 	exports.isEmptyObject = isEmptyObject;
 	exports.isFunction = isFunction;
+	exports.isNil = isNil;
 	exports.isNumber = isNumber;
 	exports.isObjectData = isObjectData;
 	exports.range = range;
