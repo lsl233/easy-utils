@@ -16,4 +16,8 @@ describe('append url query', () => {
 	test('appendQueryToURL(\'https://github.com\')', () => {
 		expect(appendQueryToURL('https://github.com')).toBe('https://github.com')
 	})
+
+	test('appendQueryToURL(\'https://github.com\')', () => {
+		expect(appendQueryToURL('https://github.com')).toBe('https://github.com')
+	})
 })

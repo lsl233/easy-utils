@@ -11,7 +11,6 @@ export default function appendQueryToURL (url, query) {
 		const hasQuery = url.indexOf('?') > -1
 		let index = 0
 		for (const key in query) {
-			if (!query.hasOwnProperty(key)) continue
 			const value = query[key]
 			if (hasQuery) {
 				url += `&${key}=${value}`
