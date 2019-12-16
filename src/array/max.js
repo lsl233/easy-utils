@@ -1,16 +1,12 @@
 import isArray from './isArray'
-import { isObject } from '../object'
 
-export default function max (value) {
+export default function max (values) {
 	const defaultValue = 0
-	if (!isArray(value)) {
+	if (!isArray(values)) {
 		console.warn('value Expected Array')
 		return defaultValue
 	}
-	if (value.length === 0) return defaultValue
-	if (isObject(value[0])) {
+	if (values.length === 0) return defaultValue
 
-	}
-
-	return Math.max.apply(this, value)
+	return Math.max.apply(this, values)
 }
