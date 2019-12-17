@@ -23,6 +23,5 @@ export default function maxByArrayObject (values, key) {
 			throw new Error('values item Expected object')
 		}
 	}
-
 	return maxItem
 }
