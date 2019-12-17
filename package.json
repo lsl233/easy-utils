@@ -11,6 +11,7 @@
     "babel-preset-env": "^1.7.0",
     "better-docs": "^1.4.7",
     "jest": "^23.6.0",
+    "jsdoc-json": "^2.0.2",
     "jsdoc-to-markdown": "^5.0.3",
     "minami": "^1.2.3",
     "regenerator-runtime": "^0.13.3",

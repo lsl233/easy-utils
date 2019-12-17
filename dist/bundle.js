@@ -106,6 +106,8 @@
 	 * @method
 	 * @param {String} value 验证对象
 	 * @returns {Boolean} 是否数组
+	 * @example
+	 * isArray([]) //=> true
 	 */
 	function isArray (value) {
 		return Array.isArray(value)
@@ -184,14 +186,56 @@
 		return result
 	}
 
-	function max (value) {
+	function max (values) {
 		const defaultValue = 0;
-		if (!isArray(value)) {
+		if (!isArray(values)) {
 			console.warn('value Expected Array');
 			return defaultValue
 		}
-		if (value.length === 0) return defaultValue
-		return Math.max.apply(this, value)
+		if (values.length === 0) return defaultValue
+
+		return Math.max.apply(this, values)
+	}
+
+	function isString(value) {
+		return typeof value === 'string' || getType(value) === '[object String]'
+	}
+
+	function maxByArrayObject (values, key) {
+		if (!isArray(values)) {
+			throw new Error('values Expected `array object`')
+		}
+
+		if (!(isString(key) || isNumber(key))) throw new Error('key Expected `String` or `Number`')
+		if (values.length === 0) throw new Error('values.length === 0')
+
+		let maxItem;
+		for (const item of values) {
+			if (isObjectData(item)) {
+				if (maxItem) {
+					maxItem = item[key] > maxItem[key] ? item : maxItem;
+				} else {
+					maxItem = item;
+				}
+			} else {
+				throw new Error('values item Expected object')
+			}
+		}
+		return maxItem
+	}
+
+	function filter (value, func) {
+		if (!isArray(value)) throw TypeError('value expected `array`')
+		if (!isFunction(func)) throw TypeError('value expected `function`')
+		const result = [];
+		for (let i = 0, l = value.length; i < l; i++) {
+			const item = value[i];
+			if (func(item, i, value)) {
+				result.push(item);
+			}
+		}
+
+		return result
 	}
 
 	function isNil(value) {
@@ -219,10 +263,6 @@
 			}
 		}
 		return url
-	}
-
-	function isString(value) {
-		return typeof value === 'string' || getType(value) === '[object String]'
 	}
 
 	const typeTuple = [Number, String, Boolean];
@@ -264,6 +304,7 @@
 	exports.calculateExecutionTime = calculateExecutionTime;
 	exports.castPath = castPath;
 	exports.convertURLQueryToObject = convertURLQueryToObject;
+	exports.filter = filter;
 	exports.getType = getType;
 	exports.getValue = getValue;
 	exports.isArray = isArray;
@@ -273,6 +314,7 @@
 	exports.isNumber = isNumber;
 	exports.isObjectData = isObjectData;
 	exports.max = max;
+	exports.maxByArrayObject = maxByArrayObject;
 	exports.range = range;
 
 	Object.defineProperty(exports, '__esModule', { value: true });

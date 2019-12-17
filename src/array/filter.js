@@ -1,7 +1,7 @@
-import { isArray } from '../array'
-import { isFunction } from '../function'
+import isArray from '../array/isArray'
+import isFunction from '../function/isFunction'
 
-export default function (value, func) {
+export default function filter (value, func) {
 	if (!isArray(value)) throw TypeError('value expected `array`')
 	if (!isFunction(func)) throw TypeError('value expected `function`')
 	const result = []
