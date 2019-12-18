@@ -7,9 +7,26 @@
     <title>EasyUtils demo</title>
 </head>
 <body>
+<button id="start">start</button>
     <script src="../dist/bundle.js"></script>
     <script>
-        console.log(easyUtils.isArrowFunction(() => {}))
+        const countDown = new easyUtils.CountDown(
+            (countDownTime) => {
+                console.log(countDownTime)
+            },
+            () => {
+                console.log('完成')
+            }
+        )
+
+        document.getElementById('start').onclick = function () {
+            if (countDown.starting) {
+                countDown.pause()
+            } else {
+                countDown.start()
+            }
+
+        }
     </script>
 </body>
 </html>
