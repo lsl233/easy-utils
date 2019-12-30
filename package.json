@@ -22,7 +22,7 @@
   "scripts": {
     "build": "rollup -c -w",
     "test": "jest",
-    "doc": "jsdoc -c doc.config.json --debug"
+    "doc": "jsdoc --template ./doc --destination ./doc/doc.html --recurse src"
   },
   "jest": {
     "collectCoverage": true,

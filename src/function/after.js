@@ -6,7 +6,7 @@ import isFunction from './isFunction'
  * @param afterFunc
  * @returns {Function|void}
  */
-export default function after (func, afterFunc) {
+function after (func, afterFunc) {
 	if (!isFunction(afterFunc)) return console.error('Expected a function')
 	if (!isFunction(func)) return console.error('Expected a function')
 
@@ -16,3 +16,5 @@ export default function after (func, afterFunc) {
 		return result
 	}
 }
+
+export default after

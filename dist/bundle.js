@@ -102,8 +102,7 @@
 	}
 
 	/**
-	 * 是否是数组
-	 * @method
+	 * 验证是否为数组
 	 * @param {String} value 验证对象
 	 * @returns {Boolean} 是否数组
 	 * @example
@@ -224,6 +223,12 @@
 		return maxItem
 	}
 
+	/**
+	 * 过滤数组
+	 * @param {Object[]} value 源数组对象
+	 * @param {Function} func 回调函数，返回 true 不过滤， 返回 false 过滤
+	 * @returns {Array} 过滤后的数组
+	 */
 	function filter (value, func) {
 		if (!isArray(value)) throw TypeError('value expected `array`')
 		if (!isFunction(func)) throw TypeError('value expected `function`')
@@ -334,6 +339,18 @@
 		return obj
 	}
 
+	function onScrollBottom (callback) {
+		if (!window || !window.document) return console.warn('当前不是浏览器环境')
+		window.addEventListener('scroll', function (e, fluctuate = 0) {
+			const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+			const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+			if (scrollHeight > clientHeight && scrollTop + clientHeight === (scrollHeight - fluctuate)) {
+				callback && callback(e);
+			}
+		});
+	}
+
 	exports.CountDown = CountDown;
 	exports.after = after;
 	exports.afterManual = afterManual;
@@ -356,6 +373,7 @@
 	exports.isObjectData = isObjectData;
 	exports.max = max;
 	exports.maxByArrayObject = maxByArrayObject;
+	exports.onScrollBottom = onScrollBottom;
 	exports.range = range;
 
 	Object.defineProperty(exports, '__esModule', { value: true });

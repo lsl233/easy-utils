@@ -1,7 +1,13 @@
 import isArray from '../array/isArray'
 import isFunction from '../function/isFunction'
 
-export default function filter (value, func) {
+/**
+ * 过滤数组
+ * @param {Object[]} value 源数组对象
+ * @param {Function} func 回调函数，返回 true 不过滤， 返回 false 过滤
+ * @returns {Array} 过滤后的数组
+ */
+function filter (value, func) {
 	if (!isArray(value)) throw TypeError('value expected `array`')
 	if (!isFunction(func)) throw TypeError('value expected `function`')
 	const result = []
@@ -14,3 +20,5 @@ export default function filter (value, func) {
 
 	return result
 }
+
+export default filter

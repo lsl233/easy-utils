@@ -7,26 +7,21 @@
     <title>EasyUtils demo</title>
 </head>
 <body>
+<ul id="list"></ul>
+
 <button id="start">start</button>
     <script src="../dist/bundle.js"></script>
     <script>
-        const countDown = new easyUtils.CountDown(
-            (countDownTime) => {
-                console.log(countDownTime)
-            },
-            () => {
-                console.log('完成')
-            }
-        )
-
-        document.getElementById('start').onclick = function () {
-            if (countDown.starting) {
-                countDown.pause()
-            } else {
-                countDown.start()
-            }
-
+        const listEl = document.getElementById('list')
+        let html = ''
+        for (let i = 0; i < 100; i++) {
+            html += '<li>' + i + '</li>'
         }
+        listEl.innerHTML = html
+
+        easyUtils.onScrollBottom(() => {
+            alert('到底部了')
+        })
     </script>
 </body>
 </html>

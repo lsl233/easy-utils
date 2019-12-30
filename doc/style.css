@@ -1,0 +1,38 @@
+body,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
+}
+
+h3 {
+	color: #273849;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+}
+
+.title h3 {
+	font-size: 28px;
+	margin-right: 16px;
+}
+
+.title span {
+	color: #656565;
+}
+
+.params p {
+	display: flex;
+	align-items: center;
+}
+
+.params p span:first-child {
+	width: 150px;
+	margin-right: 16px;
+	color: #656565;
+	font-weight: bold;
+}

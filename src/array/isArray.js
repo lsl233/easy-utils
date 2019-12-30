@@ -1,6 +1,5 @@
 /**
- * 是否是数组
- * @method
+ * 验证是否为数组
  * @param {String} value 验证对象
  * @returns {Boolean} 是否数组
  * @example
